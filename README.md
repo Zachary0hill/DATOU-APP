@@ -350,29 +350,6 @@ flutter build windows --release
 flutter build linux --release
 ```
 
-## 🤝 Contributing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **Flutter Team** for the amazing framework
-- **Supabase** for the backend infrastructure
-- **Riverpod** for state management
-- **Freezed** for immutable data classes
-
-## 📞 Support
-
-For support, email support@datou.app or join our community Discord.
-
----
 
 **Built with ❤️ using Flutter & Supabase**
