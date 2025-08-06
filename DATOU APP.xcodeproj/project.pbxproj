@@ -1,0 +1,580 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		CB93284E2E43DE3F00FF6250 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB9328342E43DE3F00FF6250 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CB93283B2E43DE3F00FF6250;
+			remoteInfo = "DATOU APP";
+		};
+		CB9328582E43DE3F00FF6250 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB9328342E43DE3F00FF6250 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CB93283B2E43DE3F00FF6250;
+			remoteInfo = "DATOU APP";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CB93283C2E43DE3F00FF6250 /* DATOU APP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DATOU APP.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB93284D2E43DE3F00FF6250 /* DATOU APPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DATOU APPTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB9328572E43DE3F00FF6250 /* DATOU APPUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DATOU APPUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		CB93285F2E43DE3F00FF6250 /* Exceptions for "DATOU APP" folder in "DATOU APP" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = CB93283B2E43DE3F00FF6250 /* DATOU APP */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		CB93283E2E43DE3F00FF6250 /* DATOU APP */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CB93285F2E43DE3F00FF6250 /* Exceptions for "DATOU APP" folder in "DATOU APP" target */,
+			);
+			path = "DATOU APP";
+			sourceTree = "<group>";
+		};
+		CB9328502E43DE3F00FF6250 /* DATOU APPTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "DATOU APPTests";
+			sourceTree = "<group>";
+		};
+		CB93285A2E43DE3F00FF6250 /* DATOU APPUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "DATOU APPUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CB9328392E43DE3F00FF6250 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB93284A2E43DE3F00FF6250 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB9328542E43DE3F00FF6250 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CB9328332E43DE3F00FF6250 = {
+			isa = PBXGroup;
+			children = (
+				CB93283E2E43DE3F00FF6250 /* DATOU APP */,
+				CB9328502E43DE3F00FF6250 /* DATOU APPTests */,
+				CB93285A2E43DE3F00FF6250 /* DATOU APPUITests */,
+				CB93283D2E43DE3F00FF6250 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CB93283D2E43DE3F00FF6250 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CB93283C2E43DE3F00FF6250 /* DATOU APP.app */,
+				CB93284D2E43DE3F00FF6250 /* DATOU APPTests.xctest */,
+				CB9328572E43DE3F00FF6250 /* DATOU APPUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CB93283B2E43DE3F00FF6250 /* DATOU APP */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB9328602E43DE3F00FF6250 /* Build configuration list for PBXNativeTarget "DATOU APP" */;
+			buildPhases = (
+				CB9328382E43DE3F00FF6250 /* Sources */,
+				CB9328392E43DE3F00FF6250 /* Frameworks */,
+				CB93283A2E43DE3F00FF6250 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				CB93283E2E43DE3F00FF6250 /* DATOU APP */,
+			);
+			name = "DATOU APP";
+			packageProductDependencies = (
+			);
+			productName = "DATOU APP";
+			productReference = CB93283C2E43DE3F00FF6250 /* DATOU APP.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CB93284C2E43DE3F00FF6250 /* DATOU APPTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB9328652E43DE3F00FF6250 /* Build configuration list for PBXNativeTarget "DATOU APPTests" */;
+			buildPhases = (
+				CB9328492E43DE3F00FF6250 /* Sources */,
+				CB93284A2E43DE3F00FF6250 /* Frameworks */,
+				CB93284B2E43DE3F00FF6250 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CB93284F2E43DE3F00FF6250 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				CB9328502E43DE3F00FF6250 /* DATOU APPTests */,
+			);
+			name = "DATOU APPTests";
+			packageProductDependencies = (
+			);
+			productName = "DATOU APPTests";
+			productReference = CB93284D2E43DE3F00FF6250 /* DATOU APPTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CB9328562E43DE3F00FF6250 /* DATOU APPUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB9328682E43DE3F00FF6250 /* Build configuration list for PBXNativeTarget "DATOU APPUITests" */;
+			buildPhases = (
+				CB9328532E43DE3F00FF6250 /* Sources */,
+				CB9328542E43DE3F00FF6250 /* Frameworks */,
+				CB9328552E43DE3F00FF6250 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CB9328592E43DE3F00FF6250 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				CB93285A2E43DE3F00FF6250 /* DATOU APPUITests */,
+			);
+			name = "DATOU APPUITests";
+			packageProductDependencies = (
+			);
+			productName = "DATOU APPUITests";
+			productReference = CB9328572E43DE3F00FF6250 /* DATOU APPUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CB9328342E43DE3F00FF6250 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					CB93283B2E43DE3F00FF6250 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					CB93284C2E43DE3F00FF6250 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = CB93283B2E43DE3F00FF6250;
+					};
+					CB9328562E43DE3F00FF6250 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = CB93283B2E43DE3F00FF6250;
+					};
+				};
+			};
+			buildConfigurationList = CB9328372E43DE3F00FF6250 /* Build configuration list for PBXProject "DATOU APP" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CB9328332E43DE3F00FF6250;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = CB93283D2E43DE3F00FF6250 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CB93283B2E43DE3F00FF6250 /* DATOU APP */,
+				CB93284C2E43DE3F00FF6250 /* DATOU APPTests */,
+				CB9328562E43DE3F00FF6250 /* DATOU APPUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CB93283A2E43DE3F00FF6250 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB93284B2E43DE3F00FF6250 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB9328552E43DE3F00FF6250 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CB9328382E43DE3F00FF6250 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB9328492E43DE3F00FF6250 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB9328532E43DE3F00FF6250 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CB93284F2E43DE3F00FF6250 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CB93283B2E43DE3F00FF6250 /* DATOU APP */;
+			targetProxy = CB93284E2E43DE3F00FF6250 /* PBXContainerItemProxy */;
+		};
+		CB9328592E43DE3F00FF6250 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CB93283B2E43DE3F00FF6250 /* DATOU APP */;
+			targetProxy = CB9328582E43DE3F00FF6250 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		CB9328612E43DE3F00FF6250 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "DATOU APP/DATOU_APP.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U23Q48J65Q;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "DATOU APP/Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "zzstudios.DATOU-APP";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CB9328622E43DE3F00FF6250 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "DATOU APP/DATOU_APP.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U23Q48J65Q;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "DATOU APP/Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "zzstudios.DATOU-APP";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CB9328632E43DE3F00FF6250 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = U23Q48J65Q;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CB9328642E43DE3F00FF6250 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = U23Q48J65Q;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CB9328662E43DE3F00FF6250 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U23Q48J65Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "zzstudios.DATOU-APPTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DATOU APP.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DATOU APP";
+			};
+			name = Debug;
+		};
+		CB9328672E43DE3F00FF6250 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U23Q48J65Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "zzstudios.DATOU-APPTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DATOU APP.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DATOU APP";
+			};
+			name = Release;
+		};
+		CB9328692E43DE3F00FF6250 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U23Q48J65Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "zzstudios.DATOU-APPUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "DATOU APP";
+			};
+			name = Debug;
+		};
+		CB93286A2E43DE3F00FF6250 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U23Q48J65Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "zzstudios.DATOU-APPUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "DATOU APP";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CB9328372E43DE3F00FF6250 /* Build configuration list for PBXProject "DATOU APP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB9328632E43DE3F00FF6250 /* Debug */,
+				CB9328642E43DE3F00FF6250 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CB9328602E43DE3F00FF6250 /* Build configuration list for PBXNativeTarget "DATOU APP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB9328612E43DE3F00FF6250 /* Debug */,
+				CB9328622E43DE3F00FF6250 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CB9328652E43DE3F00FF6250 /* Build configuration list for PBXNativeTarget "DATOU APPTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB9328662E43DE3F00FF6250 /* Debug */,
+				CB9328672E43DE3F00FF6250 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CB9328682E43DE3F00FF6250 /* Build configuration list for PBXNativeTarget "DATOU APPUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB9328692E43DE3F00FF6250 /* Debug */,
+				CB93286A2E43DE3F00FF6250 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CB9328342E43DE3F00FF6250 /* Project object */;
+}
