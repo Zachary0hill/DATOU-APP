@@ -1,0 +1,46 @@
+# Flutter/Dart/Pub related
+.dart_tool/
+.packages
+.pub-cache/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.melos_tool/
+.idea/
+*.iml
+
+# Platform specific build artifacts
+**/ephemeral/
+**/.symlinks/
+
+# macOS
+.DS_Store
+
+# Environment variables
+.env
+
+# VS Code
+.vscode/
+
+# Android Studio
+*.iws
+*.iml
+*.ipr
+.gradle/
+
+# iOS
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+xcuserdata/
+*.xccheckout
+*.moved-aside
+DerivedData/
+*.hmap
+*.ipa
+*.xcuserstate
+project.xcworkspace/
+
+# Web
+web/flutter_bootstrap.js
