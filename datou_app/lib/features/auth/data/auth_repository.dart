@@ -1,3 +1,4 @@
+import 'dart:typed_data';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../core/constants.dart';
 
@@ -48,6 +49,24 @@ class AuthRepository {
       ),
     );
     return response;
+  }
+
+  Future<UserResponse> updateUserMetadata(Map<String, dynamic> metadata) async {
+    final response = await _client.auth.updateUser(
+      UserAttributes(
+        data: metadata,
+      ),
+    );
+    return response;
+  }
+
+  Future<String> uploadAvatarBytes({required Uint8List bytes, required String userId}) async {
+    final path = '$userId.jpg';
+    await _client.storage
+        .from('avatars')
+        .uploadBinary(path, bytes, fileOptions: const FileOptions(contentType: 'image/jpeg', upsert: true));
+    final url = _client.storage.from('avatars').getPublicUrl(path);
+    return url;
   }
 
   UserRole? getUserRole() {

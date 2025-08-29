@@ -22,6 +22,9 @@ final currentUserProvider = Provider<User?>((ref) {
 });
 
 final userRoleProvider = Provider<UserRole?>((ref) {
+  // Recompute the user's role whenever the authentication state changes
+  // so routing decisions always reflect the latest session metadata.
+  final _ = ref.watch(authStateProvider);
   final authRepository = ref.watch(authRepositoryProvider);
   return authRepository.getUserRole();
 });

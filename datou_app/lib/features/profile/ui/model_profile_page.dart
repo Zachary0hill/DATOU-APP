@@ -1,8 +1,76 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../core/models/models.dart';
 import 'widgets/profile_header.dart';
 import 'widgets/profile_sections.dart';
+
+class ModelSetupScreen extends StatefulWidget {
+  const ModelSetupScreen({super.key});
+
+  @override
+  State<ModelSetupScreen> createState() => _ModelSetupScreenState();
+}
+
+class _ModelSetupScreenState extends State<ModelSetupScreen> {
+  final TextEditingController heightController = TextEditingController();
+  final TextEditingController weightController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
+        title: const Text('Model Setup'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('Height', style: TextStyle(color: Colors.white70)),
+            const SizedBox(height: 8),
+            TextField(
+              controller: heightController,
+              decoration: const InputDecoration(
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
+                hintText: 'e.g. 5\'11"',
+              ),
+            ),
+            const SizedBox(height: 16),
+            const Text('Weight', style: TextStyle(color: Colors.white70)),
+            const SizedBox(height: 8),
+            TextField(
+              controller: weightController,
+              decoration: const InputDecoration(
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
+                hintText: 'e.g. 160 lb',
+              ),
+            ),
+            const Spacer(),
+            SizedBox(
+              width: double.infinity,
+              height: 56,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF7C5CFF), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))),
+                onPressed: () {
+                  context.go('/terms');
+                },
+                child: const Text('Continue', style: TextStyle(color: Colors.white)),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
 
 class ModelProfilePage extends ConsumerWidget {
   const ModelProfilePage({

@@ -1,8 +1,76 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../core/models/models.dart';
 import 'widgets/profile_header.dart';
 import 'widgets/profile_sections.dart';
+
+class AgencySetupScreen extends StatefulWidget {
+  const AgencySetupScreen({super.key});
+
+  @override
+  State<AgencySetupScreen> createState() => _AgencySetupScreenState();
+}
+
+class _AgencySetupScreenState extends State<AgencySetupScreen> {
+  final TextEditingController companyController = TextEditingController();
+  final TextEditingController websiteController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
+        title: const Text('Agency Setup'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('Company Name', style: TextStyle(color: Colors.white70)),
+            const SizedBox(height: 8),
+            TextField(
+              controller: companyController,
+              decoration: const InputDecoration(
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
+                hintText: 'e.g. Acme Agency',
+              ),
+            ),
+            const SizedBox(height: 16),
+            const Text('Website', style: TextStyle(color: Colors.white70)),
+            const SizedBox(height: 8),
+            TextField(
+              controller: websiteController,
+              decoration: const InputDecoration(
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
+                hintText: 'https://',
+              ),
+            ),
+            const Spacer(),
+            SizedBox(
+              width: double.infinity,
+              height: 56,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF7C5CFF), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))),
+                onPressed: () {
+                  context.go('/terms');
+                },
+                child: const Text('Continue', style: TextStyle(color: Colors.white)),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
 
 class AgencyProfilePage extends ConsumerWidget {
   const AgencyProfilePage({
@@ -242,7 +310,7 @@ class AgencyProfilePage extends ConsumerWidget {
       ),
       child: GridView.builder(
         shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
+        physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 12,

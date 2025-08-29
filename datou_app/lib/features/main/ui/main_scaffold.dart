@@ -5,7 +5,7 @@ import '../../../core/constants.dart';
 import '../../../core/routing/app_router.dart';
 import '../../../core/ui/glass_container.dart';
 import '../../auth/logic/auth_providers.dart';
-import '../../listings/ui/create_listing_flow.dart';
+import 'create_selection_screen.dart';
 
 class MainScaffold extends ConsumerWidget {
   const MainScaffold({required this.child, super.key});
@@ -92,7 +92,7 @@ class MainScaffold extends ConsumerWidget {
         builder: (context) => AlertDialog(
           title: const Text('Account Required'),
           content: const Text(
-            'You need to create an account to post listings. Sign up to access all features!',
+            'You need to create an account to post content. Sign up to access all features!',
           ),
           actions: [
             TextButton(
@@ -114,10 +114,8 @@ class MainScaffold extends ConsumerWidget {
     
     showModalBottomSheet(
       context: context,
-      isScrollControlled: true,
-      useSafeArea: true,
       backgroundColor: Colors.transparent,
-      builder: (context) => const CreateListingFlow(),
+      builder: (context) => const CreateSelectionScreen(),
     );
   }
 }

@@ -1,117 +1,200 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:geolocator/geolocator.dart';
 import '../../../core/models/models.dart';
-import '../../../core/constants.dart';
 import '../data/listings_repository.dart';
 
 final listingsRepositoryProvider = Provider<ListingsRepository>((ref) {
   return ListingsRepository();
 });
 
-class ListingsFilters {
-  const ListingsFilters({
-    this.searchQuery,
-    this.types = const [],
-    this.roles = const [],
-    this.minBudget,
-    this.maxBudget,
-    this.location,
-    this.isUrgent,
-  });
-
-  final String? searchQuery;
-  final List<ListingType> types;
-  final List<UserRole> roles;
-  final double? minBudget;
-  final double? maxBudget;
-  final String? location;
-  final bool? isUrgent;
-
-  ListingsFilters copyWith({
-    String? searchQuery,
-    List<ListingType>? types,
-    List<UserRole>? roles,
-    double? minBudget,
-    double? maxBudget,
-    String? location,
-    bool? isUrgent,
-  }) {
-    return ListingsFilters(
-      searchQuery: searchQuery ?? this.searchQuery,
-      types: types ?? this.types,
-      roles: roles ?? this.roles,
-      minBudget: minBudget ?? this.minBudget,
-      maxBudget: maxBudget ?? this.maxBudget,
-      location: location ?? this.location,
-      isUrgent: isUrgent ?? this.isUrgent,
-    );
-  }
-}
-
-final listingsFiltersProvider = StateProvider<ListingsFilters>((ref) {
-  return const ListingsFilters();
+final listingsFiltersProvider = StateProvider<ListingFilters>((ref) {
+  return const ListingFilters();
 });
 
-final listingsProvider = StateNotifierProvider<ListingsNotifier, AsyncValue<List<Listing>>>((ref) {
+final listingsProvider = StateNotifierProvider<ListingsNotifier, AsyncValue<ListingSearchResult>>((ref) {
   return ListingsNotifier(ref);
 });
 
-class ListingsNotifier extends StateNotifier<AsyncValue<List<Listing>>> {
+final savedListingsProvider = StateNotifierProvider<SavedListingsNotifier, AsyncValue<List<Listing>>>((ref) {
+  return SavedListingsNotifier(ref);
+});
+
+final categoryOptionsProvider = FutureProvider.family<List<String>, ListingType>((ref, type) {
+  final repository = ref.read(listingsRepositoryProvider);
+  return repository.getCategoryOptions(type);
+});
+
+final recommendedListingsProvider = FutureProvider<List<Listing>>((ref) {
+  final repository = ref.read(listingsRepositoryProvider);
+  return repository.getRecommendedListings();
+});
+
+final trendingSearchesProvider = FutureProvider<List<Map<String, dynamic>>>((ref) {
+  final repository = ref.read(listingsRepositoryProvider);
+  return repository.getTrendingSearches();
+});
+
+class ListingsNotifier extends StateNotifier<AsyncValue<ListingSearchResult>> {
   ListingsNotifier(this.ref) : super(const AsyncValue.loading()) {
+    _initializeLocation();
     loadListings();
   }
 
   final Ref ref;
-  final List<Listing> _allListings = [];
-  int _currentPage = 0;
-  bool _hasMoreData = true;
-  static const int _pageSize = 20;
+  Position? _currentLocation;
+
+  Future<void> _initializeLocation() async {
+    try {
+      final permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        final requestPermission = await Geolocator.requestPermission();
+        if (requestPermission == LocationPermission.denied) {
+          return; // No location access
+        }
+      }
+
+      if (permission == LocationPermission.deniedForever) {
+        return; // Location permissions are permanently denied
+      }
+
+      _currentLocation = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.medium,
+      );
+
+      // Update filters with user location
+      final currentFilters = ref.read(listingsFiltersProvider);
+      ref.read(listingsFiltersProvider.notifier).state = currentFilters.copyWith(
+        userLat: _currentLocation?.latitude,
+        userLng: _currentLocation?.longitude,
+      );
+    } catch (e) {
+      // Location access failed, continue without location
+      print('Failed to get location: $e');
+    }
+  }
 
   Future<void> loadListings({bool refresh = false}) async {
     if (refresh) {
-      _allListings.clear();
-      _currentPage = 0;
-      _hasMoreData = true;
       state = const AsyncValue.loading();
     }
-
-    if (!_hasMoreData) return;
 
     try {
       final repository = ref.read(listingsRepositoryProvider);
       final filters = ref.read(listingsFiltersProvider);
 
-      final newListings = await repository.getListings(
-        limit: _pageSize,
-        offset: _currentPage * _pageSize,
-        searchQuery: filters.searchQuery,
-        types: filters.types.isEmpty ? null : filters.types,
-        roles: filters.roles.isEmpty ? null : filters.roles,
-        minBudget: filters.minBudget,
-        maxBudget: filters.maxBudget,
-        location: filters.location,
-        isUrgent: filters.isUrgent,
+      final result = await repository.searchListings(
+        refresh ? filters.copyWith(pageOffset: 0) : filters,
       );
 
-      if (newListings.length < _pageSize) {
-        _hasMoreData = false;
+      state = AsyncValue.data(result);
+    } catch (error, stackTrace) {
+      state = AsyncValue.error(error, stackTrace);
+    }
+  }
+
+  Future<void> loadMoreListings() async {
+    final currentState = state;
+    if (currentState is! AsyncData<ListingSearchResult>) return;
+
+    final currentResult = currentState.value;
+    if (!currentResult.hasMore) return;
+
+    try {
+      final repository = ref.read(listingsRepositoryProvider);
+      final filters = ref.read(listingsFiltersProvider);
+      
+      final newFilters = filters.copyWith(
+        pageOffset: filters.pageOffset + filters.pageLimit,
+      );
+
+      final newResult = await repository.searchListings(newFilters);
+      
+      // Merge results
+      final mergedListings = [...currentResult.listings, ...newResult.listings];
+      final mergedResult = ListingSearchResult(
+        listings: mergedListings,
+        totalCount: newResult.totalCount,
+        hasMore: newResult.hasMore,
+        currentPage: newResult.currentPage,
+      );
+
+      state = AsyncValue.data(mergedResult);
+      
+      // Update filters with new offset
+      ref.read(listingsFiltersProvider.notifier).state = newFilters;
+    } catch (error, stackTrace) {
+      // Keep current state on error, just log
+      print('Failed to load more listings: $error');
+    }
+  }
+
+  Future<void> refresh() async {
+    // Reset filters offset
+    final currentFilters = ref.read(listingsFiltersProvider);
+    ref.read(listingsFiltersProvider.notifier).state = currentFilters.copyWith(pageOffset: 0);
+    
+    await loadListings(refresh: true);
+  }
+
+  Future<void> updateFilters(ListingFilters newFilters) async {
+    ref.read(listingsFiltersProvider.notifier).state = newFilters.copyWith(pageOffset: 0);
+    await loadListings(refresh: true);
+  }
+
+  Future<bool> toggleSave(String listingId) async {
+    try {
+      final repository = ref.read(listingsRepositoryProvider);
+      final isSaved = await repository.toggleSave(listingId);
+      
+      // Update the listing in current state
+      final currentState = state;
+      if (currentState is AsyncData<ListingSearchResult>) {
+        final updatedListings = currentState.value.listings.map((listing) {
+          if (listing.id == listingId) {
+            return listing.copyWith(isSaved: isSaved);
+          }
+          return listing;
+        }).toList();
+
+        final updatedResult = currentState.value.copyWith(listings: updatedListings);
+        state = AsyncValue.data(updatedResult);
       }
+      
+      return isSaved;
+    } catch (e) {
+      print('Failed to toggle save: $e');
+      return false;
+    }
+  }
 
-      _allListings.addAll(newListings);
-      _currentPage++;
+  bool get hasMoreData {
+    final currentState = state;
+    return currentState is AsyncData<ListingSearchResult> ? currentState.value.hasMore : false;
+  }
+}
 
-      state = AsyncValue.data(List.from(_allListings));
+class SavedListingsNotifier extends StateNotifier<AsyncValue<List<Listing>>> {
+  SavedListingsNotifier(this.ref) : super(const AsyncValue.loading()) {
+    loadSavedListings();
+  }
+
+  final Ref ref;
+
+  Future<void> loadSavedListings({bool refresh = false}) async {
+    if (refresh) {
+      state = const AsyncValue.loading();
+    }
+
+    try {
+      final repository = ref.read(listingsRepositoryProvider);
+      final savedListings = await repository.getSavedListings();
+      state = AsyncValue.data(savedListings);
     } catch (error, stackTrace) {
       state = AsyncValue.error(error, stackTrace);
     }
   }
 
   Future<void> refresh() async {
-    await loadListings(refresh: true);
+    await loadSavedListings(refresh: true);
   }
-
-  Future<void> loadMoreListings() async {
-    await loadListings();
-  }
-
-  bool get hasMoreData => _hasMoreData;
 }

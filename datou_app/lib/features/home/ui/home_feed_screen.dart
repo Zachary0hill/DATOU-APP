@@ -4,12 +4,18 @@ import '../../../core/ui/glass_container.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../auth/logic/auth_providers.dart';
 import '../../calendar/logic/calendar_providers.dart';
+import 'social_feed_screen.dart';
 
 class HomeFeedScreen extends ConsumerWidget {
   const HomeFeedScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Return the new social media style feed
+    return const SocialFeedScreen();
+  }
+  
+  Widget _buildOriginalHomeFeed(BuildContext context, WidgetRef ref) {
     final userRole = ref.watch(userRoleProvider);
     final currentUser = ref.watch(currentUserProvider);
 

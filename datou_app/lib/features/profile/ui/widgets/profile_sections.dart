@@ -257,7 +257,7 @@ class PortfolioSection extends StatelessWidget {
       ),
       child: GridView.builder(
         shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
+        physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
           crossAxisSpacing: 8,

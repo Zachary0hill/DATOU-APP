@@ -149,7 +149,7 @@ class ListingCard extends StatelessWidget {
                   const SizedBox(width: 4),
                   Expanded(
                     child: Text(
-                      listing.location,
+                      listing.locationText,
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.grey[600],
@@ -179,7 +179,7 @@ class ListingCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    '\$${listing.budget.toStringAsFixed(0)}',
+                    '\$${listing.budget?.toStringAsFixed(0) ?? 'TBD'}',
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,

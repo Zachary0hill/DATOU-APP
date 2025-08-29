@@ -1,8 +1,85 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../core/models/models.dart';
 import 'widgets/profile_header.dart';
 import 'widgets/profile_sections.dart';
+
+class PhotographerSetupScreen extends StatefulWidget {
+  const PhotographerSetupScreen({super.key});
+
+  @override
+  State<PhotographerSetupScreen> createState() => _PhotographerSetupScreenState();
+}
+
+class _PhotographerSetupScreenState extends State<PhotographerSetupScreen> {
+  final TextEditingController nicheController = TextEditingController();
+  double radiusMiles = 25;
+  double years = 1;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
+        title: const Text('Photographer Setup'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('Niche', style: TextStyle(color: Colors.white70)),
+            const SizedBox(height: 8),
+            TextField(
+              controller: nicheController,
+              decoration: const InputDecoration(
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
+                hintText: 'e.g. Portraits, Weddings',
+              ),
+            ),
+            const SizedBox(height: 16),
+            Text('Service radius: ${radiusMiles.toStringAsFixed(0)} mi', style: const TextStyle(color: Colors.white70)),
+            Slider(
+              value: radiusMiles,
+              min: 5,
+              max: 200,
+              divisions: 39,
+              label: radiusMiles.toStringAsFixed(0),
+              onChanged: (v) => setState(() => radiusMiles = v),
+            ),
+            const SizedBox(height: 8),
+            Text('Years experience: ${years.toStringAsFixed(0)}', style: const TextStyle(color: Colors.white70)),
+            Slider(
+              value: years,
+              min: 0,
+              max: 40,
+              divisions: 40,
+              label: years.toStringAsFixed(0),
+              onChanged: (v) => setState(() => years = v),
+            ),
+            const Spacer(),
+            SizedBox(
+              width: double.infinity,
+              height: 56,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF7C5CFF), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))),
+                onPressed: () {
+                  context.go('/terms');
+                },
+                child: const Text('Continue', style: TextStyle(color: Colors.white)),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
 
 class PhotographerProfilePage extends ConsumerWidget {
   const PhotographerProfilePage({

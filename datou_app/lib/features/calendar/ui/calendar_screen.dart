@@ -21,125 +21,213 @@ class CalendarScreen extends HookConsumerWidget {
     final bookingsAsync = ref.watch(bookingsProvider(selectedDay.value));
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Calendar'),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () => _showAvailabilityDialog(context, ref, selectedDay.value),
-          ),
-          PopupMenuButton<CalendarFormat>(
-            icon: const Icon(Icons.view_module),
-            onSelected: (format) => calendarFormat.value = format,
-            itemBuilder: (context) => const [
-              PopupMenuItem(
-                value: CalendarFormat.month,
-                child: Text('Month View'),
-              ),
-              PopupMenuItem(
-                value: CalendarFormat.twoWeeks,
-                child: Text('2 Weeks View'),
-              ),
-              PopupMenuItem(
-                value: CalendarFormat.week,
-                child: Text('Week View'),
-              ),
-            ],
-          ),
-        ],
-      ),
-      body: Column(
-        children: [
-          Container(
-            margin: const EdgeInsets.all(16),
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 4,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: TableCalendar<CalendarEvent>(
-              firstDay: DateTime.utc(2020, 1, 1),
-              lastDay: DateTime.utc(2030, 12, 31),
-              focusedDay: focusedDay.value,
-              selectedDayPredicate: (day) => isSameDay(selectedDay.value, day),
-              calendarFormat: calendarFormat.value,
-              eventLoader: (day) => _getEventsForDay(day, ref),
-              startingDayOfWeek: StartingDayOfWeek.monday,
-              calendarStyle: CalendarStyle(
-                outsideDaysVisible: false,
-                selectedTextStyle: const TextStyle(color: Colors.white),
-                selectedDecoration: const BoxDecoration(
-                  color: kPrimary,
-                  shape: BoxShape.circle,
-                ),
-                todayDecoration: BoxDecoration(
-                  color: kPrimary.withOpacity(0.3),
-                  shape: BoxShape.circle,
-                ),
-                markersMaxCount: 3,
-                markerDecoration: const BoxDecoration(
-                  color: kSecondary,
-                  shape: BoxShape.circle,
-                ),
-              ),
-              headerStyle: const HeaderStyle(
-                formatButtonVisible: false,
-                titleCentered: true,
-                leftChevronIcon: Icon(Icons.chevron_left, color: kPrimary),
-                rightChevronIcon: Icon(Icons.chevron_right, color: kPrimary),
-              ),
-              onDaySelected: (selectedDayParam, focusedDayParam) {
-                selectedDay.value = selectedDayParam;
-                focusedDay.value = focusedDayParam;
-              },
-              onFormatChanged: (format) => calendarFormat.value = format,
-              onPageChanged: (focusedDayParam) => focusedDay.value = focusedDayParam,
-            ),
-          ),
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+      backgroundColor: Colors.black,
+      body: SafeArea(
+        child: Column(
+          children: [
+            // Custom Header
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    DateFormat('EEEE, MMMM d, y').format(selectedDay.value),
-                    style: const TextStyle(
-                      fontSize: 18,
+                  const Text(
+                    'Calendar',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 16),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          _buildAvailabilitySection(availabilityAsync, selectedDay.value),
-                          const SizedBox(height: 16),
-                          _buildBookingsSection(bookingsAsync),
+                  Row(
+                    children: [
+                      IconButton(
+                        onPressed: () => _showAvailabilityDialog(context, ref, selectedDay.value),
+                        icon: const Icon(
+                          Icons.add,
+                          color: Colors.white,
+                          size: 24,
+                        ),
+                      ),
+                      PopupMenuButton<CalendarFormat>(
+                        icon: const Icon(
+                          Icons.view_module,
+                          color: Colors.white,
+                          size: 24,
+                        ),
+                        onSelected: (format) => calendarFormat.value = format,
+                        color: Colors.grey[900],
+                        itemBuilder: (context) => [
+                          const PopupMenuItem(
+                            value: CalendarFormat.month,
+                            child: Text('Month View', style: TextStyle(color: Colors.white)),
+                          ),
+                          const PopupMenuItem(
+                            value: CalendarFormat.twoWeeks,
+                            child: Text('2 Weeks View', style: TextStyle(color: Colors.white)),
+                          ),
+                          const PopupMenuItem(
+                            value: CalendarFormat.week,
+                            child: Text('Week View', style: TextStyle(color: Colors.white)),
+                          ),
                         ],
                       ),
-                    ),
+                    ],
                   ),
                 ],
               ),
             ),
-          ),
-        ],
+            
+            // Calendar Widget with proper sizing
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: TableCalendar<CalendarEvent>(
+                firstDay: DateTime.utc(2020, 1, 1),
+                lastDay: DateTime.utc(2030, 12, 31),
+                focusedDay: focusedDay.value,
+                selectedDayPredicate: (day) => isSameDay(selectedDay.value, day),
+                calendarFormat: calendarFormat.value,
+                eventLoader: (day) => _getEventsForDay(day, ref),
+                startingDayOfWeek: StartingDayOfWeek.monday,
+                rowHeight: 52,
+                daysOfWeekHeight: 40,
+                calendarStyle: CalendarStyle(
+                  outsideDaysVisible: false,
+                  cellMargin: const EdgeInsets.all(4),
+                  defaultTextStyle: const TextStyle(
+                    color: Colors.black87,
+                    fontSize: 15,
+                  ),
+                  weekendTextStyle: const TextStyle(
+                    color: Colors.black87,
+                    fontSize: 15,
+                  ),
+                  selectedTextStyle: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  todayTextStyle: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  selectedDecoration: const BoxDecoration(
+                    color: kPrimary,
+                    shape: BoxShape.circle,
+                  ),
+                  todayDecoration: BoxDecoration(
+                    color: kPrimary.withOpacity(0.5),
+                    shape: BoxShape.circle,
+                  ),
+                  defaultDecoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                  ),
+                  weekendDecoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                  ),
+                  markersMaxCount: 3,
+                  markerDecoration: BoxDecoration(
+                    color: kSecondary,
+                    shape: BoxShape.circle,
+                  ),
+                  markerSize: 6,
+                  markerMargin: const EdgeInsets.symmetric(horizontal: 1),
+                ),
+                headerStyle: HeaderStyle(
+                  formatButtonVisible: false,
+                  titleCentered: true,
+                  titleTextStyle: const TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+                  leftChevronIcon: const Icon(Icons.chevron_left, color: kPrimary, size: 24),
+                  rightChevronIcon: const Icon(Icons.chevron_right, color: kPrimary, size: 24),
+                  headerPadding: const EdgeInsets.symmetric(vertical: 8),
+                ),
+                daysOfWeekStyle: const DaysOfWeekStyle(
+                  weekdayStyle: TextStyle(
+                    color: Colors.black54,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  weekendStyle: TextStyle(
+                    color: Colors.black54,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                onDaySelected: (selectedDayParam, focusedDayParam) {
+                  selectedDay.value = selectedDayParam;
+                  focusedDay.value = focusedDayParam;
+                },
+                onFormatChanged: (format) => calendarFormat.value = format,
+                onPageChanged: (focusedDayParam) => focusedDay.value = focusedDayParam,
+              ),
+            ),
+            
+            const SizedBox(height: 16),
+            
+            // Selected Date Info
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                DateFormat('EEEE, MMMM d, y').format(selectedDay.value),
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            
+            const SizedBox(height: 12),
+            
+            // Content Section
+            Expanded(
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 16),
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics(),
+                  ),
+                  child: Padding(
+                    // Ensure enough bottom space so content isn't hidden behind bottom nav
+                    padding: const EdgeInsets.only(bottom: 140),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildAvailabilitySection(availabilityAsync, selectedDay.value),
+                        const SizedBox(height: 24),
+                        _buildBookingsSection(bookingsAsync),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _showAvailabilityDialog(context, ref, selectedDay.value),
-        child: const Icon(Icons.add),
+      floatingActionButton: Container(
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [Color(0xFF8B5CF6), Color(0xFFA855F7)],
+          ),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: FloatingActionButton(
+          onPressed: () => _showAvailabilityDialog(context, ref, selectedDay.value),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          child: const Icon(Icons.add, color: Colors.white),
+        ),
       ),
     );
   }
@@ -186,12 +274,19 @@ class CalendarScreen extends HookConsumerWidget {
           children: [
             const Text(
               'Availability',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+              ),
             ),
             TextButton.icon(
               onPressed: () {}, // TODO: Edit availability
-              icon: const Icon(Icons.edit, size: 16),
-              label: const Text('Edit'),
+              icon: const Icon(Icons.edit, size: 16, color: Color(0xFF8B5CF6)),
+              label: const Text(
+                'Edit',
+                style: TextStyle(color: Color(0xFF8B5CF6), fontSize: 14),
+              ),
             ),
           ],
         ),
@@ -202,16 +297,17 @@ class CalendarScreen extends HookConsumerWidget {
               return Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(8),
+                  color: Colors.grey[900],
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.grey[800]!),
                 ),
                 child: const Row(
                   children: [
-                    Icon(Icons.schedule, color: Colors.grey),
-                    SizedBox(width: 8),
+                    Icon(Icons.schedule, color: Colors.white54, size: 20),
+                    SizedBox(width: 12),
                     Text(
                       'No availability set for this day',
-                      style: TextStyle(color: Colors.grey),
+                      style: TextStyle(color: Colors.white70, fontSize: 15),
                     ),
                   ],
                 ),
@@ -221,24 +317,28 @@ class CalendarScreen extends HookConsumerWidget {
             return Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.green.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(8),
+                color: Colors.green.withOpacity(0.15),
+                borderRadius: BorderRadius.circular(12),
                 border: Border.all(color: Colors.green.withOpacity(0.3)),
               ),
               child: Row(
                 children: [
-                  const Icon(Icons.check_circle, color: Colors.green),
-                  const SizedBox(width: 8),
+                  const Icon(Icons.check_circle, color: Colors.green, size: 20),
+                  const SizedBox(width: 12),
                   Text(
                     'Available ${DateFormat('HH:mm').format(availability.startTime)} - ${DateFormat('HH:mm').format(availability.endTime)}',
-                    style: const TextStyle(fontWeight: FontWeight.w500),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
+                      fontSize: 15,
+                    ),
                   ),
                 ],
               ),
             );
           },
           loading: () => const Center(child: CircularProgressIndicator()),
-          error: (error, stack) => Text('Error: $error'),
+          error: (error, stack) => Text('Error: $error', style: const TextStyle(color: Colors.red)),
         ),
       ],
     );
@@ -250,7 +350,11 @@ class CalendarScreen extends HookConsumerWidget {
       children: [
         const Text(
           'Bookings',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
+          ),
         ),
         const SizedBox(height: 8),
         bookingsAsync.when(
@@ -259,16 +363,17 @@ class CalendarScreen extends HookConsumerWidget {
               return Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(8),
+                  color: Colors.grey[900],
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.grey[800]!),
                 ),
                 child: const Row(
                   children: [
-                    Icon(Icons.event_busy, color: Colors.grey),
-                    SizedBox(width: 8),
+                    Icon(Icons.event_busy, color: Colors.white54, size: 20),
+                    SizedBox(width: 12),
                     Text(
                       'No bookings for this day',
-                      style: TextStyle(color: Colors.grey),
+                      style: TextStyle(color: Colors.white70, fontSize: 15),
                     ),
                   ],
                 ),
@@ -280,7 +385,7 @@ class CalendarScreen extends HookConsumerWidget {
             );
           },
           loading: () => const Center(child: CircularProgressIndicator()),
-          error: (error, stack) => Text('Error: $error'),
+          error: (error, stack) => Text('Error: $error', style: const TextStyle(color: Colors.red)),
         ),
       ],
     );
@@ -310,11 +415,11 @@ class CalendarScreen extends HookConsumerWidget {
     }
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 8),
+      margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: statusColor.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(8),
+        color: statusColor.withOpacity(0.15),
+        borderRadius: BorderRadius.circular(12),
         border: Border.all(color: statusColor.withOpacity(0.3)),
       ),
       child: Column(
@@ -338,6 +443,7 @@ class CalendarScreen extends HookConsumerWidget {
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
+                  color: Colors.white,
                 ),
               ),
             ],
@@ -345,18 +451,22 @@ class CalendarScreen extends HookConsumerWidget {
           const SizedBox(height: 8),
           Text(
             '${DateFormat('HH:mm').format(booking.startDate)} - ${DateFormat('HH:mm').format(booking.endDate)}',
-            style: const TextStyle(fontWeight: FontWeight.w600),
+            style: const TextStyle(
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+              fontSize: 14,
+            ),
           ),
           if (booking.meetingLocation?.isNotEmpty == true) ...[
             const SizedBox(height: 4),
             Row(
               children: [
-                const Icon(Icons.location_on, size: 14, color: Colors.grey),
+                Icon(Icons.location_on, size: 14, color: Colors.grey[400]),
                 const SizedBox(width: 4),
                 Expanded(
                   child: Text(
                     booking.meetingLocation!,
-                    style: const TextStyle(color: Colors.grey, fontSize: 12),
+                    style: TextStyle(color: Colors.grey[400], fontSize: 12),
                   ),
                 ),
               ],
